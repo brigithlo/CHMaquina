@@ -1,2 +1,0 @@
-El ch se ejecuta a través del programa Visual Studio Code.
-1.se busca la carpeta chMaquina mediante open folder y se ejecuta el archivo (chmaquina)

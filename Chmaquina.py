@@ -9,7 +9,6 @@ from tkinter import messagebox as mb
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter.filedialog import askopenfile
-    
 
 
 
@@ -29,7 +28,7 @@ listaMemoria=list()
 valr=''
 valorKernel=StringVar()
 valorMemoria=StringVar()
-valorVelocidad=StringVar()
+#valorVelocidad=StringVar()
 conty=0
 tota_lineas=2
 contenido2=[]
@@ -54,13 +53,12 @@ def if_integer(string):
           int(string)
           return True
        except ValueError:
-           return False   
-        
+           return False
 
 def extraer_V_E():
     valor=0
     for x in range(0,len(lista_linea)):
-        
+
         if str(lista_linea[x])=='nueva':
             lista_variable.append(lista_linea[valor + 1])
             #scrolledtext1.insert(END,lista_linea[x+2])
@@ -71,16 +69,16 @@ def extraer_V_E():
             else:
                 band=0
                 for u in range(len(sint)):
-                 
-                 if lista_linea[x+2]==sint[u]: 
-                   
+
+                 if lista_linea[x+2]==sint[u]:
+
                    lista_valores.append(lista_linea[x+3])
                    band=1
-                if band==0:    
-                    lista_valores.append('0')   
+                if band==0:
+                    lista_valores.append('0')
         if str(lista_linea[x])=='etiqueta':
             lista_etiqueta.append(lista_linea[valor + 1])
-            
+
         valor=valor+1
 
 
@@ -88,20 +86,19 @@ def extraer_V_E():
 def No_Declarada():
     bandf=0
     for x in range(0,len(lista_linea)):
-       
+
         for t in range(len(sintaxis)):
            # scrolledtext1.insert(END,'nO ENTRO')
             if lista_linea[x].lower()==sintaxis[t]:
                # scrolledtext1.insert(END, 'si ENTRO')
                 bandf=1
-                
-                
+
 
         if bandf==0:
-         
+
+
            for y in range(x+1):
-               
-            
+
 
                if lista_linea[x]==lista_linea[y]:
                   
@@ -125,11 +122,11 @@ def No_Declarada():
                            scrolledtext1.insert(END,'\nError...No se ha declarado la variable >> ')
                            scrolledtext1.insert(END, lista_linea[x])
                            return var
-      
-           #scrolledtext1.insert(END,'\n Error.. Hay una variable que NO decl')             
 
-                         
-        else:  
+           #scrolledtext1.insert(END,'\n Error.. Hay una variable que NO decl')
+
+
+        else:
            bandf=0
 def excepcion():
     for x in range(len(lista_linea)):
@@ -141,25 +138,25 @@ def excepcion():
 def Repite_Declarada():
     bandf=0
     for x in range(0,len(lista_linea)):
-       
+
         for t in range(len(sintaxis)):
            # scrolledtext1.insert(END,'nO ENTRO')
             if lista_linea[x].lower==sintaxis[t]:
                # scrolledtext1.insert(END, 'si ENTRO')
                 bandf=1
                 break
-                
+
 
         if bandf==0:
-         
+
            for y in range(x-1):
                #scrolledtext1.insert(END,'\n')
-               
+
                if lista_linea[x].lower()==lista_linea[y]:
-                   
+
                    #scrolledtext1.insert(END,lista_linea[x])
                    if if_integer(lista_linea[x])==True:
-                      
+
                        break
                    else:
                      if lista_linea[y-1]=='nueva':
@@ -169,13 +166,13 @@ def Repite_Declarada():
                             scrolledtext1.insert(END,'\nError... Ya fue declarada la variable >> ')
                             scrolledtext1.insert(END,lista_linea[x])
                             return var
-                            
-                    
-      
-           #scrolledtext1.insert(END,'\n Error.. Hay una variable que NO decl')             
 
-                         
-        else:  
+
+
+           #scrolledtext1.insert(END,'\n Error.. Hay una variable que NO decl')
+
+
+        else:
            bandf=0
 
 
@@ -186,19 +183,19 @@ def Repite_Declarada():
 
 def VerificarTipo():
      flag=0
-     for x in range(0,len(lista_linea)):   
-       # scrolledtext1.insert(END, 't')  
+     for x in range(0,len(lista_linea)):
+       # scrolledtext1.insert(END, 't')
         #scrolledtext2.insert(END,lista_linea[x+2])
         if lista_linea[x]=='nueva':
-           
+
             flag=0
             for y in range(len(sintaxis)):
 
                if lista_linea[x+2].upper==sintaxis[y]:
                  #scrolledtext2.insert(END,'  TIPO ')
                  flag=1
-                
-           
+
+
             if flag==1:
                 #scrolledtext2.insert(END, lista_linea[x+2])
                 var=2
@@ -207,13 +204,13 @@ def VerificarTipo():
                 scrolledtext1.insert(END,lista_linea[x+1])
                 flag=0
                # return var
-              
 
- 
+
+
 def save():
     with open(filename.get(), 'w') as file:
         file.write(scrolledtext3.get('1.0', END))
- 
+
 
 def Limpiar():
     scrolledtext1.delete(1.0,END)
@@ -222,7 +219,7 @@ def Limpiar():
     memoria.delete(*memoria.get_children())
     PC.delete(*PC.get_children())
     Acumulador.delete(*PC.get_children())
-    
+
     MJ.delete(*PC.get_children())
     etiqueta.delete(*etiqueta.get_children())
     variable.delete(*variable.get_children())
@@ -234,49 +231,48 @@ def Limpiar():
     global lista_variable
 
     lista_auxiliar=list()
-    
+
     lista_etiqueta=list()
     lista_variable=list()
     listaMemoria=list()
     lista_linea=list()
     lista_valores=list()
     lista_auxiliar.clear()
-   
+
     lista_etiqueta.clear()
-    
+
     lista_variable.clear()
 
     listaMemoria.clear()
-    
+
     lista_linea.clear()
-    
+
     lista_valores.clear()
-    
+
     control=0
     cantidadProgramas=0
 
 
 
-def cargar():  
+def cargar():
  #if controlC!=1:
 
     #scrolledtext1.delete(1.0,END)
     memoria.delete(*memoria.get_children())
     #etiqueta.delete(*etiqueta.get_children())
    # variable.delete(*variable.get_children())
-    val1=valorKernel.get()      
-    val2=valorMemoria.get() 
-    
-  
-      
+    val1=valorKernel.get()
+    val2=valorMemoria.get()
+
+
 ######  aqui cargamos el sistema operativo
     cont=0
     Necesaria=0
-   
-  
+
+
     memoria.insert(parent='', index='end',text='0000',values='')
-  
-    
+
+
     for y in range(int(val1)):
         cont=cont+1
         Necesaria=Necesaria+1
@@ -286,14 +282,13 @@ def cargar():
             if y>99:
                  s='0'+str(y+1)
             else:
-                 s='000'+str(y+1)     
-      
+                 s='000'+str(y+1)
+
 
         memoria.insert(parent='', index='end',text=s,values='**CH-SO_V21**')
-  
+
 ####### aqui cargamos el programa
-   
-    
+
     for linea in range(len(listaMemoria)):
         if cont>=9 and cont<=99:
             s='00'+str(cont+1)
@@ -301,18 +296,18 @@ def cargar():
              if cont>99:
                s='0'+str(cont+1)
              else:
-                 s='000'+str(cont+1) 
-      
+                 s='000'+str(cont+1)
+
         cont=cont+1
-       
+
         memoria.insert(parent='', index='end',text=s,values= listaMemoria[linea])
     contVAR=0
-    conETi=0   
+    conETi=0
 
     for line in range(len(listaMemoria)):
-        
-    
-      #  scrolledtext1.insert(END, 'E1')    
+
+
+      #  scrolledtext1.insert(END, 'E1')
         if 'nueva' in listaMemoria[line]:
             if contVAR <len(lista_variable):
                 #scrolledtext1.insert(END,lista_variable[contVAR])
@@ -324,12 +319,12 @@ def cargar():
                     if Necesaria>99:
                        s='0'+str(Necesaria+1)
                     else:
-                       s='000'+str(Necesaria+1) 
-               
+                       s='000'+str(Necesaria+1)
+
                 variable.insert(parent='', index='end',text=s,values=lista_variable[contVAR])
-               
-         
-                
+
+
+
                 contVAR=contVAR+1
                 #scrolledtext1.insert(END,listaMemoria[line])
         else:
@@ -344,28 +339,27 @@ def cargar():
                        if Necesaria>99:
                           s='0'+str(Necesaria+1)
                        else:
-                          s='000'+str(Necesaria+1) 
-                     
+                          s='000'+str(Necesaria+1)
+
                     etiqueta.insert(parent='', index='end',text=s,values=lista_etiqueta[conETi])
 
                     conETi=conETi+1
-                    #scrolledtext1.insert(END, listaMemoria[line])    
-        
+                    #scrolledtext1.insert(END, listaMemoria[line])
+
         Necesaria=Necesaria+1
     for y in range(len(lista_variable)):
         lista_variable.pop(0)
-    for y in range(len(lista_etiqueta)) :   
+    for y in range(len(lista_etiqueta)) :
         lista_etiqueta.pop(0)
     for y in range(len(lista_valores)):
-        lista_valores.pop(0)        
+        lista_valores.pop(0)
     #lista_etiqueta.clear()
-    #lista_variable.clear() 
+    #lista_variable.clear()
     #lista_etiqueta.append(' ')
     #lista_etiqueta.append(' ')
-                
 
 
-     
+
 def AbrirCh():
     var1=0
     var2=0
@@ -380,24 +374,23 @@ def AbrirCh():
     global cantidadProgramas
     if nombrerarc!='':
         scrolledtext2.insert(END,nombrerarc)
-       
+
         archi=open(nombrerarc,"r", encoding="utf-8")
-  
+
         listar=archi.readlines()
-         
+
         archi.close()
-       
+
         contarPrograma=len(listar)-1
         cantidadProgramas=cantidadProgramas+1
 
         if contarPrograma  <= int(valM) -int(valK)-len(listaMemoria)-1:
-          
-          
+
             #contenido2.append(contenido)
 
-          
+
           archi=open(nombrerarc,"r", encoding="utf-8")
-          contenido=archi.read() 
+          contenido=archi.read()
           archi.close()
          
           scrolledtext3.insert(END,contenido)
@@ -564,11 +557,8 @@ def cargue(acumulador,lista,linea_instrucion,inicio,fin):
    #scrolledtext2.insert(END, 'CARGUE: \n')        
   # scrolledtext2.insert(END,acumulador)        
    return acumulador          
-      
-              
 
 
-            
 def almacene(acumulador, lista,linea_instrucion,inicio,fin):
     listaA=list()
     listaA2=list()
@@ -834,7 +824,7 @@ def extraiga(acumulador,lista,linea_instrucion,inicio,fin):
     cantidad=len(acumulador)
    # scrolledtext2.insert(END,acumulador)
     listaA=descomponer(linea_instrucion)
-    cade1=listaA[1] 
+    cade1=listaA[1]
     for x in range(inicio,fin):
         listaA2=descomponer(lista[x])
         cade3=listaA2[1]
@@ -842,10 +832,10 @@ def extraiga(acumulador,lista,linea_instrucion,inicio,fin):
         if cade1[0]== cade3[0]:
           #  listaA2=descomponer(lista[x])
             valor=listaA2[2]
-           
+
             break
     acumulador
-    #scrolledtext2.insert(END,valor)    
+    #scrolledtext2.insert(END,valor)
     x=0
     while x<int(cantidad):
         if x>=int(valor):
@@ -866,33 +856,33 @@ def andlogi(acumulador,lista,linea_instrucion,inicio,fin):
     listaA=list()
     listaA2=list()
     listaA=descomponer(linea_instrucion)
-    cade1=listaA[1] 
+    cade1=listaA[1]
     cade2=listaA[2]
     cade3=listaA[3]
-   
+
     for x in range(inicio,fin):
         listaA2=descomponer(lista[x])
-        
+
         cade=listaA2[1]
-        
-       
+
+
         if cade1[0]== cade[0]:
-          
-          
+
+
             valor1=listaA2[2]
         if cade2[0]== cade:
             valor2=listaA2[2]
-    
+
     if valor1=='1' and valor2=='1':
-       
+
         valor3=1
     else:
-       
+
         valor3=0
     for x in range(inicio,fin):
         listaA2=descomponer(lista[x])
         cadex=listaA2[1]
-       
+
         if cade3[0]==cadex:
            
             cadex=listaA2[1]
@@ -1137,7 +1127,7 @@ def ejecutar():
 
         band=0
         #scrolledtext1.insert(END, fin)
-        vali2=valorVelocidad.get()
+        #vali2=valorVelocidad.get()
         
         while band!=1:
 
@@ -1285,23 +1275,23 @@ def ejecutar():
                 #scrolledtext1.insert(END, control)
                 band=1
                 break ####################################### salida
-        
 
-            
+
+
             if "vayasi" in listaMemoria[control]:
                # scrolledtext3.insert(END, 'yufu')
                 saltar=vayasi(control,acumulador,listaMemoria[control],listaMemoria[control+1],listaMemoria[control+2])
-               
+
                 control= saltar -1
             else:
-                control=control+1   
+                control=control+1
                 #control=0
                 #control=saltar
                # band=0
-            
-           
-       ##### cuadro de impresion de 
-label_coment1=Label(ventana1, text='impresion',font=('Arial',14))
+
+
+       ##### cuadro de impresion
+label_coment1=Label(ventana1, text='IMPRESORA',font=('Arial',14))
 label_coment1.grid(column=0,row=0)
 
 scrolledtext1=st.ScrolledText(ventana1, width=20,height=10)
@@ -1310,8 +1300,8 @@ scrolledtext1=st.ScrolledText(ventana1, width=20,height=10)
 scrolledtext1.place(x=540,y=350)
 label_coment1.place(x=570,y=320)
 
-        #  Cuadro de Pantalla 
-label_coment2=Label(ventana1, text='Pantalla',font=('Arial',14))
+        #  Cuadro de Pantalla
+label_coment2=Label(ventana1, text='PANTALLA',font=('Arial',14))
 label_coment2.grid(column=0,row=2)
 scrolledtext2=st.ScrolledText(ventana1, width=30,height=10)
 scrolledtext2.grid(column=0,row=3,padx=0,pady=0)
@@ -1345,7 +1335,7 @@ memoria.column('#0',width=50)
 memoria.column('#1',width=80)
 memoria.heading('#0',text="Direccion", anchor=CENTER)
 memoria.heading('#1',text=" Instrucion")
-label_coment4=Label(ventana1,text='Memoria',font=('Arial',14))
+label_coment4=Label(ventana1,text='MEMORIA',font=('Arial',14))
 label_coment4.place(x=900,y=10)
 
        #Cuadro de  variable
@@ -1390,44 +1380,35 @@ memoriac=Spinbox(ventana1,from_=59,to=100,textvariable= valorMemoria, width=8).p
 
 
 
-label_comentKernel=Label(ventana1,text='velocidad',).place(x=10,y=70)
+""" label_comentKernel=Label(ventana1,text='velocidad',).place(x=10,y=70)
 velocida=Scale(ventana1,from_=1, to=100,variable=valorVelocidad, width=14, orient=HORIZONTAL).place(x=70,y=50)
-
+ """
 #############################################
 #       BOTONES DE ACCION
 
  # Abrir un archivo y mostrar
 #imagenA=PhotoImage( height=30,width=30, file="descarga_1_.gif")
 
-botonAbrir=Button(ventana1,text="Abrir", command=AbrirCh).place(x=70,y=10)
+botonAbrir=Button(ventana1,text="Abrir", bg="gray", fg ="purple", command=AbrirCh).place(x=70,y=10)
 
 # Cargar el contenido a  la memoria, aun no se ha hecho la funcion
-botonCargar=Button(ventana1,text="Cargar",command=cargar)
+botonCargar=Button(ventana1,text="Cargar", bg="gray", fg ="purple",command=cargar)
 botonCargar.place(x=170,y=10)
 
 # ejecutar el programa
-botonEjecutar=Button(ventana1,text="Ejecutar",command=ejecutar)
+botonEjecutar=Button(ventana1,text="Ejecutar", bg="gray", fg ="purple",command=ejecutar)
 botonEjecutar.place(x=270,y=10)
 
-# ejecutar instrucion por instrucion 
-botonPaso=Button(ventana1, text="Paso A Paso")
+# ejecutar instrucion por instrucion
+botonPaso=Button(ventana1, text="Paso A Paso", bg="gray", fg ="purple")
 botonPaso.place(x=370,y=10)
 
 ## limpia toda la informacion cargada
-botonLimpiar=Button(ventana1, height=2, text="Reiniciar",command=Limpiar)
-botonLimpiar.place(x=470,y=3)
+botonLimpiar=Button(ventana1, text="Reiniciar", bg="gray", fg ="purple",command=Limpiar)
+botonLimpiar.place(x=470,y=10)
 
 # crear archivos con la informacion ingresada en el ScrolledText3
-crear=Button(text='Crear',command=save).place(x=130,y=185)
+#crear=Button(text='Crear',command=save).place(x=130,y=185)
 
 
 ventana1.mainloop()
-  
-
-      
-
-
-
-
-
- 
