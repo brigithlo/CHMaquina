@@ -212,45 +212,6 @@ def save():
         file.write(scrolledtext3.get('1.0', END))
 
 
-def Limpiar():
-    scrolledtext1.delete(1.0,END)
-    scrolledtext2.delete(1.0,END)
-    scrolledtext3.delete(1.0,END)
-    memoria.delete(*memoria.get_children())
-    PC.delete(*PC.get_children())
-    Acumulador.delete(*PC.get_children())
-
-    MJ.delete(*PC.get_children())
-    etiqueta.delete(*etiqueta.get_children())
-    variable.delete(*variable.get_children())
-    global lista_auxiliar
-    global lista_etiqueta
-    global lista_linea
-    global listaMemoria
-    global lista_valores
-    global lista_variable
-
-    lista_auxiliar=list()
-
-    lista_etiqueta=list()
-    lista_variable=list()
-    listaMemoria=list()
-    lista_linea=list()
-    lista_valores=list()
-    lista_auxiliar.clear()
-
-    lista_etiqueta.clear()
-
-    lista_variable.clear()
-
-    listaMemoria.clear()
-
-    lista_linea.clear()
-
-    lista_valores.clear()
-
-    control=0
-    cantidadProgramas=0
 
 
 
@@ -1399,13 +1360,9 @@ botonCargar.place(x=170,y=10)
 botonEjecutar=Button(ventana1,text="Ejecutar", bg="gray", fg ="purple",command=ejecutar)
 botonEjecutar.place(x=270,y=10)
 
-# ejecutar instrucion por instrucion
-botonPaso=Button(ventana1, text="Paso A Paso", bg="gray", fg ="purple")
-botonPaso.place(x=370,y=10)
 
-## limpia toda la informacion cargada
-botonLimpiar=Button(ventana1, text="Reiniciar", bg="gray", fg ="purple",command=Limpiar)
-botonLimpiar.place(x=470,y=10)
+
+
 
 # crear archivos con la informacion ingresada en el ScrolledText3
 #crear=Button(text='Crear',command=save).place(x=130,y=185)
